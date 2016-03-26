@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Region, type: :model do
-  describe "Validate Region" do
+  describe "Validate name" do
 
     it "Should valid with valid names" do
       valid_regions = build_list :region, 5, :valid_name
