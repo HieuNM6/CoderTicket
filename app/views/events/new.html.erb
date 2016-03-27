@@ -1,0 +1,10 @@
+<%= simple_form_for @event do |e| %>
+   <%= e.input :name %>
+   <%= e.input :starts_at %>
+   <%= e.input :ends_at %>
+   <%= e.input :extended_html_description %>
+   <%= e.input :venue_id, collection: @hash_events.sort.map {|k,v| [v,k]} %>
+   <%= e.input :category_id, collection: @categorys%>
+   <%= e.button :submit %>
+<% end %>
+

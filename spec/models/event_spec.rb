@@ -13,7 +13,7 @@ RSpec.describe Event, type: :model do
       expect(Event.upcomming_events).not_to match_array(past_events)
     end
   end
-  
+
   describe ".event_searches_by_name" do
 
     it "should return searched events by match name" do
@@ -29,4 +29,19 @@ RSpec.describe Event, type: :model do
     end
   end
 
+  describe "event must have at least one ticket_type to can be published" do
+    let(:event) {create :event, :in_the_future, publish: false}
+
+    it "should return false when have no ticket_type" do
+      event.publish = true
+      expect(event.save).to eq(false)
+    end
+
+    it "should return true when have at least one ticket_type" do
+      type = create :ticket_type, event: event
+      event.publish = true
+      expect(event.save).to eq(true)
+    end
+
+  end
 end

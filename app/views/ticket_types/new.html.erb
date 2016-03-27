@@ -1,0 +1,7 @@
+<%= simple_form_for @ticket_type do |f| %>
+  <%= f.input :event_id, as: :hidden %>
+  <%= f.input :name %>
+  <%= f.input :price %>
+  <%= f.input :max_quantity %>
+  <%= f.button :submit %>
+<% end %>
