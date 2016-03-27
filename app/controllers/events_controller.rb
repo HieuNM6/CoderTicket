@@ -41,7 +41,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      flash.now[:success] = "Event has updated"
+      flash[:success] = "Event has updated"
       redirect_to event_list_path
     else
       flash.now[:error] = "Event hasn't updated"
