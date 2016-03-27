@@ -7,19 +7,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
   <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
     <a class="navbar-brand" href="<%= root_path %>">Coder Ticket</a>
     <ul class="nav navbar-nav">
+    <% unless user_signed_in? %>
       <li class="nav-item">
-        <a class="nav-link" href="#">Log In</a>
+        <%= link_to "Sign in", new_user_session_path, class:"nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Sign Up</a>
+        <%= link_to "Sign up", new_user_registration_path, class:"nav-link" %>
       </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"nav-link" %>
+      </li>
+    <% end%>
     </ul>
   </nav>  
-
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 <%= yield %>
 
 </body>
