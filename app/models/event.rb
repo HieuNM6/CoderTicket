@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
   has_many :ticket_types
+  validate :validate_publish
 
   validates_presence_of :extended_html_description, :venue, :category, :starts_at
   validates_uniqueness_of :name, uniqueness: {scope: [:venue, :starts_at]}
@@ -14,4 +15,17 @@ class Event < ActiveRecord::Base
   def self.event_searches_by_name search_params
     Event.where("name like ?","%#{search_params.downcase}%")
   end
+
+  def publish_event
+    self.publish = true
+    self.save
+  end
+  
+  def validate_publish
+    types = self.ticket_types
+    if (publish == true) && (types.count < 1)
+      errors.add(:publish," Need at least one ticket_type to publish")
+    end  
+  end
+
 end
