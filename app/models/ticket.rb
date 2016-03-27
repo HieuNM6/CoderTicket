@@ -5,7 +5,7 @@ class Ticket < ActiveRecord::Base
 
   def not_more_than_quantity
     ticket_type = TicketType.find_by_id(ticket_type_id)
-    total_count = count + ticket_from_same_event(ticket_type)
+    total_count = count + Ticket.ticket_from_same_event(ticket_type)
     if( total_count > ticket_type.max_quantity)
       errors.add(:count, "need not more than quantity")
     end
@@ -19,7 +19,7 @@ class Ticket < ActiveRecord::Base
     end
   end
 
-  def ticket_from_same_event type
+  def self.ticket_from_same_event type
     tickets = Ticket.where("ticket_type_id = ?", type.id)
     total_count = 0;
     tickets.each do |t|
