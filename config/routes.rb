@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :events do
     resources :tickets
   end
-
+  
+  get 'publish_event' => 'events#publish'
   get 'event_list' => 'events#event_list'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

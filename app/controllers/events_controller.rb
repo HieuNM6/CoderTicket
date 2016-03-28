@@ -27,7 +27,7 @@ class EventsController < ApplicationController
       flash[:success] = "Event has created"
       redirect_to root_path
     else
-      flash.now[:error] = "Event hasn't created"
+      flash.now[:danger] = "Event hasn't created"
       initialize_show_vars
       render :action => 'new'
     end
@@ -44,9 +44,34 @@ class EventsController < ApplicationController
       flash[:success] = "Event has updated"
       redirect_to event_list_path
     else
-      flash.now[:error] = "Event hasn't updated"
+      flash.now[:danger] = "Event hasn't updated"
       initialize_show_vars
       render 'edit'
+    end
+  end
+
+  def publish
+    if params[:publish_event]
+      @event = Event.find_by_id(params[:publish_event])
+      @event.publish_event
+      if @event.save
+        flash[:success] = "Event has published"
+        redirect_to event_list_path
+      else
+        flash[:danger] = "Need at least one ticket type to publish event"
+        redirect_to event_list_path
+      end
+    end
+    if params[:unpublish_event]
+      @event = Event.find_by_id(params[:unpublish_event])
+      @event.publish = false
+      if @event.save
+        flash[:success] = "Event has been unpublished"
+        redirect_to event_list_path
+      else
+        flash[:danger] = "Event hasn't unpublished yet"
+        redirect_to event_list_path
+      end
     end
   end
   private

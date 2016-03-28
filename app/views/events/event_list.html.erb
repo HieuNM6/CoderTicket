@@ -6,6 +6,7 @@
       <th>Edit Event</th>
       <th>Ticket types</th>
       <th>Add ticket type</th>
+      <th>Publish</th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,15 @@
         <td>
           <%= link_to "Add new ticket_type", new_ticket_type_path(event: e.id) %>
         </td>
+        <% if e.publish == false %>
+        <td>
+          <%= link_to "Publish event", publish_event_path(publish_event: e.id) %>
+        </td>
+        <% else %>
+        <td>
+          <%= link_to "Unpublish event", publish_event_path(unpublish_event: e.id) %>
+        </td>
+        <% end %>
       </tr>
       <% end %>
     <% end %>
