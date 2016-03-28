@@ -8,7 +8,7 @@ Time spent: **18** hours
 
 URL: **https://radiant-headland-85584.herokuapp.com/**
 
-SimpleCov Test Coverage: **87.84%**
+SimpleCov Test Coverage: **88.84%**
 
 ## User Stories
 
