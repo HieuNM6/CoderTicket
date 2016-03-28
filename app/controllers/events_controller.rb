@@ -2,9 +2,9 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!, except: [:show, :index]
   def index
     if params[:search]
-      @events = Event.event_searches_by_name(params[:search])
+      @events = Event.event_searches_by_name_with_published_event(params[:search])
     else
-      @events = Event.upcomming_events
+      @events = Event.upcomming_events_with_published_event
     end
   end
 
@@ -83,4 +83,5 @@ class EventsController < ApplicationController
       @categorys = Category.all
       @hash_events = (Venue.ids).zip(Venue.names).to_h
     end
+
 end

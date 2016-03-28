@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-11 col-md-offset-1">  
+    <div class="col-md-8 col-md-offset-2">  
       <table class="table">
         <th> Ticket Type </th>
         <th> Unit Price </th>
@@ -32,10 +32,18 @@
         <tr>
           <td> <%= type.name %> </td>
           <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
-          <td> <%= select_tag('quantity', options_for_select(0..10)) %></td> 
+          <td> <%= type.remaining_ticket %></td> 
         </tr>
         <% end %> 
       </table>
+      <%= simple_form_for @ticket, url: event_tickets_path, method: :post do |f| %>
+        <%= f.input :ticket_type_id, collection: @ticket_types %>
+        <%= f.input :count, collection: 1..10 %>
+        <%= f.input :name %>
+        <%= f.input :address %>
+        <%= f.input :phone, as: :integer %>
+        <%= f.button :submit %>
+      <% end %>
     </div>
   </div>
   <div class="row">

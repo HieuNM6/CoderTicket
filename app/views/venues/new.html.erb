@@ -1,0 +1,6 @@
+<%= simple_form_for @venue  do  |f| %>
+  <%= f.input :name %>
+  <%= f.input :full_address %>
+  <%= f.input :region_id, collection: @regions %>
+  <%= f.button :submit %>
+<% end %>

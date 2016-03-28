@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  get 'venues/new'
+
   devise_for :users
   root 'events#index'
   resources :ticket_types
+  resources :venues, except: [:show,:index,:edit]
   resources :events do
     resources :tickets
   end
-  
+  post 'new_venue' => 'venues#create' 
   get 'publish_event' => 'events#publish'
   get 'event_list' => 'events#event_list'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -2,6 +2,9 @@ class Ticket < ActiveRecord::Base
   belongs_to :ticket_type
   validates :count, :inclusion => {:in=> 1..10}
   validate :not_more_than_quantity,:no_past_event
+  validates :name, presence: true, length: { minimum: 5}
+  validates :address, presence: true, length: { minimum: 6 }
+  validates :phone, presence: true, length: { minimum: 9, maximum:10}
 
   def not_more_than_quantity
     ticket_type = TicketType.find_by_id(ticket_type_id)
