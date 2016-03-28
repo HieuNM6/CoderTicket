@@ -42,14 +42,11 @@
         <%= f.input :name %>
         <%= f.input :address %>
         <%= f.input :phone, as: :integer %>
-        <%= f.button :submit %>
+       <div class="text-xs-center">
+         <%= f.button :submit, class: "btn btn-success btn-lg" %>
+       </div>
       <% end %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-2 col-md-offset-5">
-      <button class="btn btn-success btn-lg btn-block"> Buy </button>
-    </div>
-  <div>
 </div>  
 
