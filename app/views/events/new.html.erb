@@ -6,7 +6,7 @@
        <%= e.input :ends_at %>
        <%= e.input :hero_image_url %>
        <%= e.input :extended_html_description %>
-       <%= e.input :venue_id, collection: @hash_events.sort.map {|k,v| [v,k]} %>
+       <%= e.input :venue_id, collection: @venues %>
        <%= e.input :category_id, collection: @categorys%>
        <div class="text-xs-center">
          <%= e.button :submit, class: "btn btn-success btn-lg" %>

@@ -81,7 +81,7 @@ class EventsController < ApplicationController
 
     def initialize_show_vars
       @categorys = Category.all
-      @hash_events = (Venue.ids).zip(Venue.names).to_h
+      @venues = Venue.all
     end
 
 end
